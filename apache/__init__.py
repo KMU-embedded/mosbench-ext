@@ -203,8 +203,8 @@ class ApacheRunner(object):
         if cfg.hotplug:
             m += SetCPUs(host = host, num = cfg.cores)
         # XXX Make configurable (at least iface name)
-        m += IXGBE(host, "eth0", queues = "n%min(NCPU, NRX if rx else NTX)",
-                   flowDirector = "spread-incoming")
+        #m += IXGBE(host, "eth0", queues = "n%min(NCPU, NRX if rx else NTX)",
+        #           flowDirector = "spread-incoming")
 
         # We need to start memcached after hot-plugging cores because
         # we bind it to specific cores.

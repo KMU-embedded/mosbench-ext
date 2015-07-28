@@ -1,4 +1,5 @@
-TARGETS=exim memcached apache postgres gmake psearchy metis micro
+#TARGETS=exim memcached apache postgres gmake psearchy metis micro
+TARGETS=exim 
 
 all: $(addprefix all-,$(TARGETS))
 clean: $(addprefix clean-,$(TARGETS))

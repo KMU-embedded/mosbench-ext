@@ -6,7 +6,8 @@ import hosts
 # the setup.  This is useful to do before the full benchmark suite
 # because it will almost certainly uncover misconfigurations that
 # could halt a lengthy full benchmark part way through.
-sanityRun = True
+#sanityRun = True
+sanityRun = False
 
 # For an explanation of configuration spaces and a description of why
 # we use '*' and '+' all over this file, see the module documentation
@@ -27,20 +28,20 @@ shared *= mk(primaryHost = hosts.primaryHost)
 
 # benchRoot specifies the directory on the primary host where MOSBENCH
 # was checked out or unpacked.
-shared *= mk(benchRoot = "~/mosbench")
+shared *= mk(benchRoot = "~/github/mosbench-ext")
 
 # textRoot specifies the directory on the primary host where the text
 # to use for the Psearchy indexing benchmark can be found.  To
 # reproduce the results in the paper, this should be a pristine check
 # out of Linux 2.6.35-rc5.
-shared *= mk(textRoot = "~/scale-linux")
+shared *= mk(textRoot = "~/github/scalablelinux")
 
 # kernelRoot specifies the directory on the primary host where the
 # kernel source to use for the gmake benchmark can be found.  To
 # reproduce the results in the paper, this should be a check out of
 # Linux 2.6.35-rc5.  This can be the same directory used for textRoot
 # above.
-shared *= mk(kernelRoot = "~/scale-linux")
+shared *= mk(kernelRoot = "~/github/scaleablelinux")
 
 # fs specifies which type of file system to use.  This can be any file
 # system type known to mkmounts except hugetlbfs.
@@ -65,9 +66,9 @@ shared *= mk(hotplug = True)
 # configuration for the graphing tools to work (which also means it
 # generally shouldn't be overridden per benchmark).
 if sanityRun:
-    shared *= mk(cores = [48], nonConst = True)
+    shared *= mk(cores = [2], nonConst = True)
 else:
-    shared *= mk(cores = [1] + range(0, 49, 4)[1:], nonConst = True)
+    shared *= mk(cores = [1] + range(0, 1, 1)[1:], nonConst = True)
 
 ##################################################################
 # Exim
@@ -95,11 +96,11 @@ exim *= mk(clients = 96)
 # list of ports and returns a list of memcached.MemcachedHost objects
 # to use as client load generators.
 
-import memcached
+#import memcached
 
-memcached = mk(benchmark = memcached.runner, nonConst = True)
+#memcached = mk(benchmark = memcached.runner, nonConst = True)
 
-memcached *= mk(getMemcacheClients = hosts.getMemcacheClients)
+#memcached *= mk(getMemcacheClients = hosts.getMemcacheClients)
 
 ##################################################################
 # Apache
@@ -120,10 +121,10 @@ memcached *= mk(getMemcacheClients = hosts.getMemcacheClients)
 # the FD limit for each load generator client.  This, in turn, limits
 # the number of open connections each client can maintain at once.
 
-import apache
+#import apache
 
-apache = mk(benchmark = apache.runner, nonConst = True)
-
+#apache = mk(benchmark = apache.runner, nonConst = True)
+'''
 apache *= mk(threadsPerCore = 24)
 apache *= mk(fileSize = 300)
 apache *= mk(getApacheClients = hosts.getApacheClients)
@@ -247,7 +248,7 @@ metis = mk(benchmark = metis.runner, nonConst = True)
 metis *= mk(streamflow = True)
 metis *= mk(model = ["hugetlb", "default"])
 metis *= mk(order = ["rr"])
-
+'''
 ##################################################################
 # Complete configuration
 #
@@ -262,9 +263,9 @@ metis *= mk(order = ["rr"])
 # one configuration.  Furthermore, instead of computing the regular
 # product, we compute a "merge" product, where assignments from the
 # left will override assignments to the same variables from the right.
-configSpace = ((exim + memcached + apache + postgres + gmake + psearchy + metis)
-               .merge(shared))
-#configSpace = exim.merge(shared)
+#configSpace = ((exim + memcached + apache + postgres + gmake + psearchy + metis)
+#               .merge(shared))
+configSpace = exim.merge(shared)
 #configSpace = memcached.merge(shared)
 #configSpace = apache.merge(shared)
 #configSpace = postgres.merge(shared)

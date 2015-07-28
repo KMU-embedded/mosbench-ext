@@ -55,7 +55,7 @@ def usage():
     import textwrap
     print >> sys.stderr, "Usage: %s {range | -i}" % sys.argv[0]
     print >> sys.stderr
-    help = ("range is a range of CPUs to enable, such as 0-48 or 0,2,4."
+    help = ("range is a range of CPUs to enable, such as 0-2 or 0,2,4."
             "-i enters interactive mode, which prompts for CPU ranges and"
             "enables all CPUs on EOF.")
     print >> sys.stderr, textwrap.fill(help)

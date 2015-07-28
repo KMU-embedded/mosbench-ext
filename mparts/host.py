@@ -276,7 +276,7 @@ class Host(Task, SourceFileProvider):
                "--filter", "P *.pyc",
                # XXX HACK HACK HACK.  Perhaps SourceFileProvider
                # should provide protect patterns.
-               "--filter", "P *.o", "--filter", "P /home/amdragon/mosbench/memcached/mcload/mdc_udp"
+               "--filter", "P *.o", "--filter", "P /home/kesl/github/mosbench-ext/memcached/mcload/mdc_udp"
                ]
         parents = set()
         for sf in sfs:
