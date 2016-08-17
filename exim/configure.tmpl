@@ -50,7 +50,7 @@ deliver_drop_privilege = true
 # there are 8 smtpbms
 smtp_accept_max = 100
 #smtp_connect_backlog = 100
-#smtp_accept_max_per_connection = 100
+#smtp_accept_max_per_connection = 4000
 #smtp_accept_queue = 150
 #smtp_accept_queue_per_connection = 50
 #queue_only_load = 1000
@@ -64,7 +64,7 @@ smtp_accept_max = 100
 # uname() function is called to obtain the name. In many cases this does
 # the right thing and you need not set anything explicitly.
 
-primary_hostname = 192.168.0.32
+primary_hostname = 192.168.0.3
 
 
 # The next three settings create two lists of domains and one list of hosts.

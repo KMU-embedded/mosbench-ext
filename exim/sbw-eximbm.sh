@@ -4,7 +4,7 @@
 # the make script has implicit deps. on this script
 #
 
-MAXCPU=2
+MAXCPU=120
 CPUS=1
 N=1
 

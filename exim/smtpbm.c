@@ -66,7 +66,7 @@ static void xread(int s, char *buf)
 	while(n+1 < 512){
 		cc = read(s, buf + n, 512 - n);
 		if(cc <= 0)
-			oops("xread EOF");
+			continue;
 		n += cc;
 		buf[n] = '\0';
 		for(i = 0; i+1 < n; i++){

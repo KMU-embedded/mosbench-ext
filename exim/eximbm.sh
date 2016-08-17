@@ -5,8 +5,8 @@
 # what should pkill do?
 #
 
-MAXCPU=2
-CPUS=1
+MAXCPU=120
+CPUS=120
 N=2
 
 OS=`uname`

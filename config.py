@@ -46,13 +46,14 @@ shared *= mk(kernelRoot = "~/github/scaleablelinux")
 # fs specifies which type of file system to use.  This can be any file
 # system type known to mkmounts except hugetlbfs.
 shared *= mk(fs = "tmpfs-separate")
+#shared *= mk(fs = "tmpfs")
 
 # trials is the number of times to run each benchmark.  The best
 # result will be taken.
 if sanityRun:
     shared *= mk(trials = 1)
 else:
-    shared *= mk(trials = 3)
+    shared *= mk(trials = 1)
 
 # hotplug specifies whether or not to use CPU hotplug to physically
 # disable cores not in use by the benchmark.  All cores should be
@@ -68,7 +69,8 @@ shared *= mk(hotplug = True)
 if sanityRun:
     shared *= mk(cores = [2], nonConst = True)
 else:
-    shared *= mk(cores = [1] + range(0, 1, 1)[1:], nonConst = True)
+    shared *= mk(cores = [120], nonConst = True)
+    #shared *= mk(cores = [15] + range(15, 121, 15)[1:], nonConst = True)
 
 ##################################################################
 # Exim
@@ -87,7 +89,7 @@ exim = mk(benchmark = exim.runner, nonConst = True)
 
 exim *= mk(eximBuild = "exim-mod")
 exim *= mk(eximPort = 2526)
-exim *= mk(clients = 96)
+exim *= mk(clients = 120)
 
 ##################################################################
 # memcached
